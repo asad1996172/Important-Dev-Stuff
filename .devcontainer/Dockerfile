@@ -4,7 +4,13 @@
 ARG VARIANT="3.9"
 FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 
+# setup ZSH
 COPY ./.devcontainer/.zshrc /root/.zshrc
+ENV ZSH_CUSTOM=/root/.oh-my-zsh/custom
+RUN git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+RUN ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 
 # [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
 ARG NODE_VERSION="none"
