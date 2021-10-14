@@ -1,2 +1,3 @@
-# VSCode Dev Containers
-My custom vscode devcontainers for difference development environments
+# Dev Stuff
+- VS Code dev container templates
+- Python git precommit hooks
